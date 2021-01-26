@@ -1,0 +1,12 @@
+Instruction Manual
+
+Use A / D to move vertically.
+Use SPACE to jump.
+Aim for a Divergence of 0.
+Press R to Try Again.
+And ESC to Escape the Game.
+
+Menu Screen
+
+Back To The Higgins
+*Fix Time to be Right!*
