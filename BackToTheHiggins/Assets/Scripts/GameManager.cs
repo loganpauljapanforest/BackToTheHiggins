@@ -15,9 +15,10 @@ public class GameManager : MonoBehaviour
      * If you wish to modify divergence, just add to GameManager.Divergence the amount you need.
      */
     public static int Divergence = 0;
-    public static int LevelNumber = 5; // Build Settings Number for the First Level
+    public static int LevelNumber = 2; // index for current level
     [SerializeField] private Text divergenceText;
     [SerializeField] private GameObject player;
+    private string[] levelNames = { "MainLevel", "FirstLevel", "alex_testscene", "filler" };
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +35,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // player update
+        player = GameObject.Find("player");
         // divergence update
+        divergenceText = FindObjectOfType<Text>();
         divergenceText.text = Divergence.ToString();
         // rewind
         if (Input.GetKey("r"))
@@ -43,23 +47,25 @@ public class GameManager : MonoBehaviour
         }
         // get screen edges
         Vector3 pos = Camera.main.WorldToViewportPoint(player.transform.position);
-        
-        /* TODO: MAKE A BOUNDS CHECK FOR LAST LEVEL, TO NOT EXCEED IT */
+        /* TODO: ADJUST ABOVE NAME ARRAY FOR IMPLEMENTATION OF LEVELS */
         // if hits left side screen go left a level
         if ( pos.x < 0.0 )
         {
             LevelNumber--;
-            if (LevelNumber >= 5)
+            if (LevelNumber >= 0)
             {
-                SceneManager.LoadScene(SceneManager.GetSceneByBuildIndex(LevelNumber).ToString());
+                SceneManager.LoadScene(levelNames[LevelNumber]);
             } 
         } 
         // if hits right side 
         else if ( pos.x > 1.0)
         {
             LevelNumber++;
-            // do load stuff of next scene
-            SceneManager.LoadScene(SceneManager.GetSceneByBuildIndex(LevelNumber).ToString());
+            // do load stuff of next scene'
+            if ( LevelNumber <= levelNames.Length)
+            {
+                SceneManager.LoadScene(levelNames[LevelNumber]);
+            }
         }
 
         // escape ability
