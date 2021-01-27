@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: df9614ad40c783b42ad78dce6bd3ab9a
+<<<<<<< HEAD:BackToTheHiggins/Assets/Sprites.meta
+guid: fb5fb9f995f7a5e4bb6a4371cbe82b79
+=======
+guid: 280578ce117d73844b01003b0089b835
+>>>>>>> b2603eb315351f3e3938a0d6f96aeefc68cbb713:BackToTheHiggins/Assets/Designs.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
