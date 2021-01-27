@@ -7,7 +7,9 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D myrb;
     [SerializeField] float speed;
     [SerializeField] float jumpForce;
+    [SerializeField] float maxSpeed;
     bool grounded = true;
+    float currentSpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -16,18 +18,39 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if(Input.GetKey("right") || Input.GetKey(KeyCode.D))
+        
+        Movement();
+        Jumping();
+        if(myrb.velocity.x > maxSpeed)
+        {
+            myrb.velocity = new Vector2(maxSpeed, myrb.velocity.y);
+        }
+        if(myrb.velocity.x < -maxSpeed)
+        {
+            myrb.velocity = new Vector2(-maxSpeed, myrb.velocity.y);
+        }
+    }
+
+    void Movement()
+    {
+        if (Input.GetKey("right") || Input.GetKey(KeyCode.D))
         {
             myrb.AddForce(new Vector2(speed, 0));
         }
-        if (Input.GetKey("left") || Input.GetKey(KeyCode.A))
+        else if (Input.GetKey("left") || Input.GetKey(KeyCode.A))
         {
             myrb.AddForce(new Vector2(-speed, 0));
         }
-
-        Jumping();
+        else if (myrb.velocity.x > 0)
+        {
+            myrb.velocity = new Vector2(myrb.velocity.x - 0.1f, myrb.velocity.y);
+        }
+        else if (myrb.velocity.x < 0)
+        {
+            myrb.velocity = new Vector2(myrb.velocity.x + 0.1f, myrb.velocity.y);
+        }
     }
 
     void Jumping()
