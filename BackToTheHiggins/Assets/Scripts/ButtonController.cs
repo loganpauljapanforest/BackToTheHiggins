@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,15 +10,20 @@ public class ButtonController : MonoBehaviour
     private bool IsReleased = false;
     private bool IsHeld = false;
 
+    public SpriteRenderer sr;
+
+    public Sprite On;
+    public Sprite Off;
+
     public bool Signal; //The value other objects read
-    enum ButtonTypeEnum
+    public enum ButtonTypeEnum
     {
         Once, //The button cannot be turned off once it is pressed
         Hold, //The button is released when the player steps off
         Toggle //The button is released the next time the player touches it
     }
 
-    ButtonTypeEnum ButtonType;
+    public ButtonTypeEnum ButtonType;
 
     // Start is called before the first frame update
     void Start()
@@ -28,51 +34,66 @@ public class ButtonController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (ButtonType == ButtonTypeEnum.Once)
         {
             if (IsPressed == true)
-                Signal = true;
+                SignalOn();
         }
 
         else if (ButtonType == ButtonTypeEnum.Hold)
         {
             if (IsHeld == true)
-                Signal = true;
+                SignalOn();
 
             else if (IsHeld == false)
-                Signal = false;
+                SignalOff();
         }
 
         else if (ButtonType == ButtonTypeEnum.Toggle)
         {
-            if (IsPressed == true)
+            if (IsPressed == true && IsHeld == false && Signal == false)
             {
-                if (Signal == false)
-                    Signal = true;
-
-                else if (Signal == true)
-                    Signal = false;
+                SignalOn();
+                Debug.Log("On");
+            }
+            else if (IsPressed == true && IsHeld == false && Signal == true)
+            {
+                SignalOff();
+                Debug.Log("Off");
             }
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         IsPressed = true;
         IsReleased = false;
+        Debug.Log("Enter");
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        IsPressed = false;
         IsReleased = true;
         IsHeld = false;
+        Debug.Log("Exit");
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         IsHeld = true;
+        IsPressed = false;
+    }
+
+    private void SignalOn()
+    {
+        Signal = true;
+        sr.sprite = On;
+    }
+
+    private void SignalOff()
+    {
+        Signal = false;
+        sr.sprite = Off;
     }
 
 }
