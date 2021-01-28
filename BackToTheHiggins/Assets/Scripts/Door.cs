@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (collision.gameObject.tag == "Player")
+        {
+            if (gameObject.tag == "LastDoor" && GameManager.Divergence != 0)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                collision.gameObject.transform.position = new Vector3(transform.position.x + 5, transform.position.y + 5, transform.position.z);
+            }  
+        }
     }
 }

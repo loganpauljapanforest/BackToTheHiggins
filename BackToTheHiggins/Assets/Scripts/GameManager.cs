@@ -52,6 +52,14 @@ public class GameManager : MonoBehaviour
         // divergence update
         divergenceText = FindObjectOfType<Text>();
         divergenceText.text = Divergence.ToString();
+        if (Divergence == 0)
+        {
+            divergenceText.color = Color.green;
+        }
+        else
+        {
+            divergenceText.color = Color.red;
+        }
         // rewind
         if (Input.GetKey("r"))
         {
