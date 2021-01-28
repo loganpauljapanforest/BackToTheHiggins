@@ -23,4 +23,15 @@ public class EnemyMovement : MonoBehaviour
         }
         myrb.velocity = new Vector2(speed,0);
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player" && collision.gameObject.transform.position.y > gameObject.transform.position.y + 0.5)
+        {
+            Destroy(gameObject);
+        }
+        if (collision.gameObject.tag == "Wall")
+        {
+            speed *= sign;
+        }
+    }
 }
