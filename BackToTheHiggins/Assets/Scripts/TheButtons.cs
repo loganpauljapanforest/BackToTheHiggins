@@ -28,7 +28,7 @@ public class TheButtons : MonoBehaviour
     }
     public void LoadStart()
     {
-        SceneManager.LoadScene("FirstLevel");
+        SceneManager.LoadScene("Level1");
     }
     public void LoadMenu()
     {
