@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿/*
+ * Door.cs
+ * By: Alex Dzius
+ * Last Edited: 1/28/2021
+ * Manages Doors to be compatible with GameManager's out of bounds scene transferring
+ */ 
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

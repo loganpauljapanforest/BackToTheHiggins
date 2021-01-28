@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿/*
+ * EnemyMovement.cs
+ * By: Alex Dzius
+ * Last Edited: 1/28/2021
+ * Enemy Movement to stay within bounds of the map and respond to red colored moveable walls and goomba-dying
+ */ 
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,7 +23,7 @@ public class EnemyMovement : MonoBehaviour
     void Update()
     {
         Vector3 pos = Camera.main.WorldToViewportPoint(myrb.transform.position);
-        if (pos.x <= 0f || pos.x >= 1f) 
+        if (pos.x <= 0.1f || pos.x >= 0.9f) 
         {
             speed *= sign;
         }

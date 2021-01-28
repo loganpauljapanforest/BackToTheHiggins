@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿/*
+ * PlayerController.cs
+ * By: Liam Binford
+ * Last Edited: 1/28/2021
+ * Player Movement
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
