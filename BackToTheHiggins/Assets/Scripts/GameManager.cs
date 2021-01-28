@@ -35,6 +35,18 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // border updare
+        Vector3 ScreenSize = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
+        GameObject SideObstacleLeft = GameObject.Find("LeftBorder");
+        GameObject SideObstacleRight = GameObject.Find("RightBorder");
+        GameObject SideObstacleTop = GameObject.Find("TopBorder");
+        GameObject SideObstacleBottom = GameObject.Find("DownBorder");
+        GameObject TextHolder = GameObject.Find("TextHolder");
+        SideObstacleLeft.transform.position = new Vector3(-ScreenSize.x, 0, 0);
+        SideObstacleRight.transform.position = new Vector3(ScreenSize.x, 0, 0);
+        SideObstacleTop.transform.position = new Vector3(0, ScreenSize.y, 0);
+        SideObstacleBottom.transform.position = new Vector3(0, -ScreenSize.y, 0);
+        TextHolder.transform.position = new Vector3(0, ScreenSize.y - ScreenSize.y * 0.55f, 0);
         // player update
         player = GameObject.Find("player");
         // divergence update
