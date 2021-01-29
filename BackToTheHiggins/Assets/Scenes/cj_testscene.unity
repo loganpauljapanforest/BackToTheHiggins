@@ -923,7 +923,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 135c721475b1645e0904c233c1899da0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  divergenceText: {fileID: 248637420}
+  divergenceText:
+  - {fileID: 0}
   player: {fileID: 70974124}
 --- !u!4 &1822655361
 Transform:
@@ -1871,6 +1872,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7699484658073701273, guid: e69be490d7bad3e409258bf129b7d469,
+        type: 3}
+      propertyPath: ButtonType
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7699484658073701285, guid: e69be490d7bad3e409258bf129b7d469,
         type: 3}

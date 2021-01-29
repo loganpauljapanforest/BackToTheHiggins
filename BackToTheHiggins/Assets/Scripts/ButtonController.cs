@@ -15,6 +15,8 @@ public class ButtonController : MonoBehaviour
     public Sprite On;
     public Sprite Off;
 
+    private int toggleInt = 0;
+
     public bool Signal; //The value other objects read
     public enum ButtonTypeEnum
     {
@@ -51,22 +53,22 @@ public class ButtonController : MonoBehaviour
 
         else if (ButtonType == ButtonTypeEnum.Toggle)
         {
-            if (IsPressed == true && IsHeld == false && Signal == false)
+            if (IsPressed == true)
             {
-                SignalOn();
-                Debug.Log("On");
-            }
-            else if (IsPressed == true && IsHeld == false && Signal == true)
-            {
-                SignalOff();
-                Debug.Log("Off");
+                if (toggleInt % 2 != 0)
+                    SignalOn();
+
+                else if (toggleInt % 2 == 0)
+                    SignalOff();
             }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (IsPressed) return;
         IsPressed = true;
+        toggleInt++;
         IsReleased = false;
         Debug.Log("Enter");
     }
