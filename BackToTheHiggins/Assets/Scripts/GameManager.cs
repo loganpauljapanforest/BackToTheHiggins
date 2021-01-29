@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
         // rewind
         if (Input.GetKey("r"))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().ToString());
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
         // get screen edges
         Vector3 pos = Camera.main.WorldToViewportPoint(player.transform.position);
