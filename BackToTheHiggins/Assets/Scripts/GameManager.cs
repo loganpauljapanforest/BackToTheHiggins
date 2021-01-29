@@ -1,7 +1,7 @@
 ﻿/*
  * GameManager.cs
  * By: Alex Dzius
- * Last Edited: 1/26/2021
+ * Last Edited: 1/28/2021
  * The all-knowing script.
  */ 
 using System.Collections;
@@ -15,10 +15,10 @@ public class GameManager : MonoBehaviour
      * If you wish to modify divergence, just add to GameManager.Divergence the amount you need.
      */
     public static int Divergence = 0;
-    public static int LevelNumber = 2; // index for current level
-    [SerializeField] private Text divergenceText;
+    public static int LevelNumber = 3; // index for current level
+    [SerializeField] private Text[] divergenceText;
     [SerializeField] private GameObject player;
-    private string[] levelNames = { "MainLevel", "FirstLevel", "alex_testscene", "filler" };
+    private string[] levelNames = { "MainLevel", "Level1", "Level2", "Level3", "WinScreen" };
     // Start is called before the first frame update
     void Start()
     {
@@ -50,15 +50,15 @@ public class GameManager : MonoBehaviour
         // player update
         player = GameObject.Find("player");
         // divergence update
-        divergenceText = FindObjectOfType<Text>();
-        divergenceText.text = Divergence.ToString();
+        divergenceText = FindObjectsOfType<Text>();
+        divergenceText[1].text = Divergence.ToString();
         if (Divergence == 0)
         {
-            divergenceText.color = Color.green;
+            divergenceText[1].color = Color.green;
         }
         else
         {
-            divergenceText.color = Color.red;
+            divergenceText[1].color = Color.red;
         }
         // rewind
         if (Input.GetKey("r"))
