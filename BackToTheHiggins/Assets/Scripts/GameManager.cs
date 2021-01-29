@@ -11,17 +11,24 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
-    /*
-     * If you wish to modify divergence, just add to GameManager.Divergence the amount you need.
-     */
+    //If you wish to modify divergence, just add to GameManager.Divergence the amount you need.
     public static int Divergence = 0;
-    public static int LevelNumber = 0; // index for current level
+    public static int LevelNumber = 0; // index for levelNames, allows for traversing levels, 
+    //but will not work if you start in like level 2 with index 0, thatll set you back a level if 
+    //you try and go forward
+
+    // this is the text GAMEOBJECT that holds the 2 texts, known as TextHolder in the hierarchy
+    // as its an array of text, either [0] or [1] is the actual divergence counter, not the title
+    // so you can fix that
     [SerializeField] private Text[] divergenceText;
+    // this is the player, just ensure the player prefab has a lower case spelling of prefab
     [SerializeField] private GameObject player;
+    // this is the build settings order of all levels, you need to have an exact copy of them in the right order to have them work.
     private string[] levelNames = { "MainLevel", "Level1", "Level2", "Level3", "WinScreen" };
     // Start is called before the first frame update
     void Start()
     {
+        // gamemanager duplication check, we only need 1
         GameManager[] anObject = FindObjectsOfType<GameManager>();
         if(anObject.Length == 1)
         {
@@ -35,23 +42,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // border updare
-        Vector3 ScreenSize = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
-        GameObject SideObstacleLeft = GameObject.Find("LeftBorder");
-        GameObject SideObstacleRight = GameObject.Find("RightBorder");
-        GameObject SideObstacleTop = GameObject.Find("TopBorder");
-        GameObject SideObstacleBottom = GameObject.Find("DownBorder");
-        GameObject TextHolder = GameObject.Find("TextHolder");
-        SideObstacleLeft.transform.position = new Vector3(-ScreenSize.x, 0, 0);
-        SideObstacleRight.transform.position = new Vector3(ScreenSize.x, 0, 0);
-        SideObstacleTop.transform.position = new Vector3(0, ScreenSize.y, 0);
-        SideObstacleBottom.transform.position = new Vector3(0, -ScreenSize.y, 0);
-        TextHolder.transform.position = new Vector3(0, ScreenSize.y, 0);
-        // player update
+        // this is to find the player gameobject in each level
         player = GameObject.Find("player");
-        // divergence update
+        // this finds the texts in the scene, where either [0] or [1] is the DIVERGENCE title, and the other is the counter
         divergenceText = FindObjectsOfType<Text>();
         divergenceText[1].text = Divergence.ToString();
+        // color change
         if (Divergence == 0)
         {
             divergenceText[1].color = Color.green;
@@ -60,15 +56,15 @@ public class GameManager : MonoBehaviour
         {
             divergenceText[1].color = Color.red;
         }
-        // rewind
+        // as discussed, this is the rewind, resets level and resets divergence
         if (Input.GetKey("r"))
         {
             Divergence = 0;
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-        // get screen edges
+        // screen edges, its basically checking on which side of the screen you went through
+        // <0 = going left, >1 going right
         Vector3 pos = Camera.main.WorldToViewportPoint(player.transform.position);
-        /* TODO: ADJUST ABOVE NAME ARRAY FOR IMPLEMENTATION OF LEVELS */
         // if hits left side screen go left a level
         if ( pos.x < 0.0 )
         {
@@ -89,7 +85,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        // escape ability
+        //this is something for the build, doesnt work in editor
         if (Input.GetKey("escape"))
         {
             Application.Quit();
