@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*
+ * ButtonController.cs
+ * By: CJ S
+ * Last Edited: 1/29/2021
+ * Controls buttons
+ */
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -70,14 +77,12 @@ public class ButtonController : MonoBehaviour
         IsPressed = true;
         toggleInt++;
         IsReleased = false;
-        Debug.Log("Enter");
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         IsReleased = true;
         IsHeld = false;
-        Debug.Log("Exit");
     }
 
     private void OnTriggerStay2D(Collider2D collision)
