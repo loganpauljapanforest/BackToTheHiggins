@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
      * If you wish to modify divergence, just add to GameManager.Divergence the amount you need.
      */
     public static int Divergence = 0;
-    public static int LevelNumber = 2; // index for current level
+    public static int LevelNumber = 0; // index for current level
     [SerializeField] private Text[] divergenceText;
     [SerializeField] private GameObject player;
     private string[] levelNames = { "MainLevel", "Level1", "Level2", "Level3", "WinScreen" };
@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
         SideObstacleRight.transform.position = new Vector3(ScreenSize.x, 0, 0);
         SideObstacleTop.transform.position = new Vector3(0, ScreenSize.y, 0);
         SideObstacleBottom.transform.position = new Vector3(0, -ScreenSize.y, 0);
-        TextHolder.transform.position = new Vector3(0, ScreenSize.y - ScreenSize.y * 0.55f, 0);
+        TextHolder.transform.position = new Vector3(0, ScreenSize.y, 0);
         // player update
         player = GameObject.Find("player");
         // divergence update
@@ -63,6 +63,7 @@ public class GameManager : MonoBehaviour
         // rewind
         if (Input.GetKey("r"))
         {
+            Divergence = 0;
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
         // get screen edges
