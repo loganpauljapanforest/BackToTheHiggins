@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
      * If you wish to modify divergence, just add to GameManager.Divergence the amount you need.
      */
     public static int Divergence = 0;
-    public static int LevelNumber = 3; // index for current level
+    public static int LevelNumber = 0; // index for current level
     [SerializeField] private Text[] divergenceText;
     [SerializeField] private GameObject player;
     private string[] levelNames = { "MainLevel", "Level1", "Level2", "Level3", "WinScreen" };
