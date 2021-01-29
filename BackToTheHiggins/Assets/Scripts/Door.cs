@@ -18,6 +18,10 @@ public class Door : MonoBehaviour
             {
                 Destroy(gameObject);
             }
+            else if (gameObject.tag == "BackDoor")
+            {
+                collision.gameObject.transform.position = new Vector3(transform.position.x - 5, transform.position.y - 5, transform.position.z);
+            }
             else
             {
                 collision.gameObject.transform.position = new Vector3(transform.position.x + 5, transform.position.y + 5, transform.position.z);

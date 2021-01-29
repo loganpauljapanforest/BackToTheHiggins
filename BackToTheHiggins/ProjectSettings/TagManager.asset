@@ -8,6 +8,7 @@ TagManager:
   - Negative
   - Wall
   - LastDoor
+  - BackDoor
   layers:
   - Default
   - TransparentFX
