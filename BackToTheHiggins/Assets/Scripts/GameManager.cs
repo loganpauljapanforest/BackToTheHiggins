@@ -45,8 +45,11 @@ public class GameManager : MonoBehaviour
         // this is to find the player gameobject in each level
         player = GameObject.Find("player");
         // this finds the texts in the scene, where either [0] or [1] is the DIVERGENCE title, and the other is the counter
-        divergenceText = FindObjectsOfType<Text>();
-        divergenceText[1].text = Divergence.ToString();
+        if (LevelNumber < levelNames.Length - 1)
+        {
+            divergenceText = FindObjectsOfType<Text>();
+            divergenceText[1].text = Divergence.ToString();
+        }
         // color change
         if (Divergence == 0)
         {
@@ -82,7 +85,7 @@ public class GameManager : MonoBehaviour
             if (LevelNumber <= levelNames.Length)
             {
                 SceneManager.LoadScene(levelNames[LevelNumber]);
-            }
+            } 
         }
 
         //this is something for the build, doesnt work in editor

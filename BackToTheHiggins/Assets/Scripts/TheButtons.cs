@@ -33,6 +33,7 @@ public class TheButtons : MonoBehaviour
     public void LoadMenu()
     {
         SceneManager.LoadScene("MenuLevel");
+        GameManager.LevelNumber = 0; // needed for replayability
     }
     public void LoadInstructions()
     {
