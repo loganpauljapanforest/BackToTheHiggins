@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     // this is the player, just ensure the player prefab has a lower case spelling of prefab
     [SerializeField] private GameObject player;
     // this is the build settings order of all levels, you need to have an exact copy of them in the right order to have them work.
-    private string[] levelNames = { "MainLevel", "Level1", "Level2", "Level3", "WinScreen" };
+    private string[] levelNames = {"Level1", "Level2", "Level3", "WinScreen" };
     // Start is called before the first frame update
     void Start()
     {
@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour
         {
             LevelNumber++;
             // do load stuff of next scene'
-            if ( LevelNumber <= levelNames.Length)
+            if (LevelNumber <= levelNames.Length)
             {
                 SceneManager.LoadScene(levelNames[LevelNumber]);
             }
