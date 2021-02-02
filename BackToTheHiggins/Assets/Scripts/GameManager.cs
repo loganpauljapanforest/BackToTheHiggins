@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject player;
     // this is the build settings order of all levels, you need to have an exact copy of them in the right order to have them work.
     private string[] levelNames = {"Level1", "Level1.5", "Level2", "Level3", "WinScreen" };
+    private GameObject textholder;
     // Start is called before the first frame update
     void Start()
     {
@@ -47,7 +48,8 @@ public class GameManager : MonoBehaviour
         // this finds the texts in the scene, where either [0] or [1] is the DIVERGENCE title, and the other is the counter
         if (LevelNumber < levelNames.Length - 1)
         {
-            divergenceText = FindObjectsOfType<Text>();
+            textholder = GameObject.Find("TextHolder");
+            divergenceText = textholder.GetComponentsInChildren<Text>();
             divergenceText[1].text = Divergence.ToString();
         }
         // color change

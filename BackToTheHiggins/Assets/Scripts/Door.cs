@@ -20,11 +20,11 @@ public class Door : MonoBehaviour
             }
             else if (gameObject.tag == "BackDoor")
             {
-                collision.gameObject.transform.position = new Vector3(transform.position.x - 5, transform.position.y - 5, transform.position.z);
+                collision.gameObject.transform.position = new Vector3(transform.position.x - 5000, transform.position.y - 5000, transform.position.z);
             }
             else
             {
-                collision.gameObject.transform.position = new Vector3(transform.position.x + 5, transform.position.y + 5, transform.position.z);
+                collision.gameObject.transform.position = new Vector3(transform.position.x + 5000, transform.position.y + 5000, transform.position.z);
             }  
         }
     }
